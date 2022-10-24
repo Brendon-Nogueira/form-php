@@ -1,3 +1,9 @@
+<?php 
+
+include_once './conexao.php';
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -18,7 +24,22 @@
    $data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
    
    if(!empty($data['msgCont'])){
-    var_dump($data);
+     // verificando o dado que está sendo passado na variavél data var_dump($data);
+
+    $query_student = "INSERT INTO students (name, email, subject, content) VALUES (:name, :email, :subject, :content)" ;
+        $add =  $conection -> prepare($query_student);
+        $add -> bindParam(':name', $data['name'] , PDO::PARAM_STR); 
+        $add -> bindParam(':email', $data['email'] , PDO::PARAM_STR); 
+        $add -> bindParam(':subject', $data['subject'] , PDO::PARAM_STR);
+        $add -> bindParam(':content', $data['content'] , PDO::PARAM_STR);
+
+        $add -> execute();
+
+        if($add -> rowCount()){
+          echo"<p style='color : green; '>Successfully</p> ";
+        } else{
+          echo"<p style='color : red; '>Error message not sent</p> ";
+        }
    }
  
  ?>
