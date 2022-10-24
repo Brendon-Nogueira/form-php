@@ -44,7 +44,7 @@
     
     <div class="mb-3">
       <label for="exampleFormControlTextarea1" class="form-label">Contents</label>
-      <textarea  name="contents"  class="form-control" id="exampleFormControlTextarea1" rows="3" cols="30" placeholder="message content"></textarea>
+      <textarea  name="content"  class="form-control" id="exampleFormControlTextarea1" rows="3" cols="30" placeholder="message content"></textarea>
       <br>
     </div>
 
