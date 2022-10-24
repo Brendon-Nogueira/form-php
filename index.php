@@ -53,9 +53,6 @@ include_once './conexao.php';
           }
         }
       }
-
-
-
       ?>
 
       <div class="mb-3">
