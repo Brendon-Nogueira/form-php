@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include_once './conexao.php';
 
@@ -15,68 +15,72 @@ include_once './conexao.php';
 </head>
 
 <body>
+  <section>
 
   <form method="POST" action="">
 
-  <h2>Form Student </h2>
-  
- <?php 
-   $data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-   
-   if(!empty($data['msgCont'])){
-     // verificando o dado que está sendo passado na variavél data var_dump($data);
+    <h2>Form Student </h2>
 
-    $query_student = "INSERT INTO students (name, email, subject, content) VALUES (:name, :email, :subject, :content)" ;
-        $add =  $conection -> prepare($query_student);
-        $add -> bindParam(':name', $data['name'] , PDO::PARAM_STR); 
-        $add -> bindParam(':email', $data['email'] , PDO::PARAM_STR); 
-        $add -> bindParam(':subject', $data['subject'] , PDO::PARAM_STR);
-        $add -> bindParam(':content', $data['content'] , PDO::PARAM_STR);
+    <?php
+    $data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        $add -> execute();
+    if (!empty($data['msgCont'])) {
+      // verificando o dado que está sendo passado na variavél data var_dump($data);
 
-        if($add -> rowCount()){
-          echo"<p style='color : green; '>Successfully</p> ";
-        } else{
-          echo"<p style='color : red; '>Error message not sent</p> ";
-        }
-   }
- 
- ?>
+      $query_student = "INSERT INTO students (name, email, subject, content) VALUES (:name, :email, :subject, :content)";
+      $add =  $conection->prepare($query_student);
+      $add->bindParam(':name', $data['name'], PDO::PARAM_STR);
+      $add->bindParam(':email', $data['email'], PDO::PARAM_STR);
+      $add->bindParam(':subject', $data['subject'], PDO::PARAM_STR);
+      $add->bindParam(':content', $data['content'], PDO::PARAM_STR);
 
-  <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Name</label>
-      <input type="text" name="name"   class="form-control" id="exampleFormControlInput1" placeholder="name" require> 
-      <br>
-    </div>
+      $add->execute();
 
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Email address</label>
-      <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" require> 
-      <br>
-    </div>
+      if ($add->rowCount()) {
+        echo "<p style='color : green; '>Successfully</p> ";
+      } else {
+        echo "<p style='color : red; '>Error message not sent</p> ";
+      }
+    }
 
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Technical Matter</label>
-      <input type="text" name="subject" class="form-control" id="exampleFormControlInput1" placeholder="subject"> 
-      <br>
-    </div>
+    ?>
 
-    
-    <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label">Contents</label>
-      <textarea  name="content"  class="form-control" id="exampleFormControlTextarea1" rows="3" cols="30" placeholder="message content"></textarea>
-      <br>
-    </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Name</label>
+        <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="name" require>
+        <br>
+      </div>
 
-    <div>
-      <input type="submit" value="Send" name="msgCont"> 
-      <br>
-    </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" require>
+        <br>
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Technical Matter</label>
+        <input type="text" name="subject" class="form-control" id="exampleFormControlInput1" placeholder="subject">
+        <br>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Contents</label>
+        <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3" cols="30" placeholder="message content"></textarea>
+        <br>
+      </div>
+
+      <div>
+        <input type="submit" value="Send" name="msgCont">
+        <br>
+      </div>
 
 
 
   </form>
+
+  </section>
+
 
 
 
