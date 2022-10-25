@@ -26,16 +26,12 @@ include_once './conexao.php';
 
       if (!empty($data['msgCont'])) {
         // verificando o dado que está sendo passado na variavél data var_dump($data);
-        
-        array_map('trim', $data);
-        if (empty($data['name'])) {
-          echo "<p style='color : red'>Error it is necessary to replace the name field</p>";
-        } else if(empty($data['email'])){
-          echo "<p style='color : red'> Error it is necessaty to replace the email field</p>";
-        } else if(empty($data['subject'])){
-          echo "<p style='color : red'> Error it is necessaty to replace the subject field</p>";
-        }  else if(empty($data['content'])){
-          echo "<p style='color : red'> Error it is necessaty to replace the content field</p>";
+
+        $data = array_map('trim', $data);
+
+        //verifica se todos os campos estão preenchidos corretamente
+        if (in_array('', $data)) {
+          echo "<p style='color : red'>It is necessary to fill in all the fields</p>";
         } else {
 
           $query_student = "INSERT INTO students (name, email, subject, content) VALUES (:name, :email, :subject, :content)";
@@ -59,34 +55,34 @@ include_once './conexao.php';
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Name</label>
-        <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="name" value="<?php if(isset($data['name'])){
-          echo $data['name'];
-        }?>">
+        <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="name" value="<?php if (isset($data['name'])) {
+                                                                                                                      echo $data['name'];
+                                                                                                                    } ?>">
         <br>
       </div>
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Email address</label>
-        <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" value="<?php if(isset($data['email'])){
-          echo $data['email'];
-        }?>" >
+        <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" value="<?php if (isset($data['email'])) {
+                                                                                                                                    echo $data['email'];
+                                                                                                                                  } ?>">
         <br>
       </div>
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Technical Matter</label>
-        <input type="text" name="subject" class="form-control" id="exampleFormControlInput1" placeholder="subject" value="<?php if(isset($data['subject'])){
-          echo $data['subject'];
-        }?>">
+        <input type="text" name="subject" class="form-control" id="exampleFormControlInput1" placeholder="subject" value="<?php if (isset($data['subject'])) {
+                                                                                                                            echo $data['subject'];
+                                                                                                                          } ?>">
         <br>
       </div>
 
 
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Contents</label>
-        <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3" cols="30" placeholder="message content" value="<?php if(isset($data['content'])){
-          echo $data['content'];
-        }?>"></textarea>
+        <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3" cols="30" placeholder="message content" value="<?php if (isset($data['content'])) {
+                                                                                                                                                  echo $data['content'];
+                                                                                                                                                } ?>"></textarea>
         <br>
       </div>
 
