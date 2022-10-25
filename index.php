@@ -26,7 +26,8 @@ include_once './conexao.php';
 
       if (!empty($data['msgCont'])) {
         // verificando o dado que está sendo passado na variavél data var_dump($data);
-
+        
+        array_map('trim', $data);
         if (empty($data['name'])) {
           echo "<p style='color : red'>Error it is necessary to replace the name field</p>";
         } else if(empty($data['email'])){
@@ -47,6 +48,7 @@ include_once './conexao.php';
           $add->execute();
 
           if ($add->rowCount()) {
+            unset($data);
             echo "<p style='color : green; '>Successfully</p> ";
           } else {
             echo "<p style='color : red; '>Error message not sent</p> ";
