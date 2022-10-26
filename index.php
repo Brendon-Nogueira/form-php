@@ -25,7 +25,7 @@ include_once './conexao.php';
       $data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
       if (!empty($data['msgCont'])) {
-        var_dump($data);
+       // var_dump($data);
 
         $data = array_map('trim', $data);
 

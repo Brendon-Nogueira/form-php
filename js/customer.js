@@ -13,7 +13,7 @@ const saveBtnEvent = e =>{
      
         if(nick === ''){
          e.preventDefault()
-         document.getElementById("alert").innerHTML = "<p>It is necessary to fill in all the fields JS</p>"
+         document.getElementById("alert").innerHTML = "<p>Error it is necessary to replace the name field</p>"
          return
         }
       }
